@@ -15,7 +15,7 @@ func main() {
 
 	// Cấu hình CORS
 	r.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"http://localhost:5173", "https://your-frontend-domain.com"}, // Thêm domain frontend bạn muốn cho phép
+		AllowOrigins:     []string{"http://localhost:5173", "https://todo-web-liart.vercel.app"}, // Thêm domain frontend bạn muốn cho phép
 		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
 		AllowHeaders:     []string{"Origin", "Content-Type", "Authorization"},
 		ExposeHeaders:    []string{"Content-Length"},
