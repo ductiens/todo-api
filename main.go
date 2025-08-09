@@ -2,18 +2,21 @@ package main
 
 import (
 	"log"
+	"os"
+
 	"github.com/gin-gonic/gin"
 	"github.com/ductiens/todo-api/routes"
-	"github.com/gin-contrib/cors"
 )
 
 func main() {
 	r := gin.Default()
-	r.Use(cors.Default())
-
-	// Setup routes
 	routes.RegisterRoutes(r)
-	
-	log.Println("Server is running on http://localhost:8080")
-	r.Run(":8080")
+
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080" // fallback khi chạy local
+	}
+
+	log.Println("Server is running on port", port)
+	r.Run(":" + port)
 }
