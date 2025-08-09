@@ -5,9 +5,9 @@ import (
 	"os"
 	"time"
 
+	"github.com/ductiens/todo-api/routes"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
-	"github.com/ductiens/todo-api/routes"
 )
 
 func main() {
@@ -15,7 +15,7 @@ func main() {
 
 	// Cấu hình CORS
 	r.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"http://localhost:5173", "https://todo-web-liart.vercel.app"}, // Thêm domain frontend bạn muốn cho phép
+		AllowOrigins:     []string{"http://localhost:5173", "https://todo-web-liart.vercel.app"}, 
 		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
 		AllowHeaders:     []string{"Origin", "Content-Type", "Authorization"},
 		ExposeHeaders:    []string{"Content-Length"},
@@ -23,6 +23,12 @@ func main() {
 		MaxAge:           12 * time.Hour,
 	}))
 
+	//test route
+	r.GET("/", func(c *gin.Context) {
+		c.JSON(200, gin.H{"status": "ok"})
+	})
+
+	// Route
 	routes.RegisterRoutes(r)
 
 	port := os.Getenv("PORT")
